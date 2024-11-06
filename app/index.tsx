@@ -5,16 +5,24 @@ import { LoginForm } from "@/components/LoginForm";
 
 export default function IndexScreen() {
     return (
-        <View style={style.container}>
-            <Text variant="displayLarge">Lesda Gym</Text>
+        <View style={styles.container}>
+            <Text variant="displayLarge" style={styles.title}>
+                Lesda Gym
+            </Text>
             <LoginForm />
         </View>
     )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red',
-        height: '100%'
+        height: '100%',
+        padding: 40,
+        justifyContent: 'center'
+    },
+    title: {
+        color: '#000',
+        textAlign: 'center',
+        marginBottom: 20
     }
 })

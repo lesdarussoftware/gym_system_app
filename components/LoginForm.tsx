@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { StyleSheet, View } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 
-import { AuthContext } from "@/providers/AuthProvider";
 import { useForm } from "@/hooks/useForm";
+import { useAuth } from "@/hooks/useAuth";
 
 type LoginFormProps = {
     submitAction?: () => void;
@@ -10,9 +10,8 @@ type LoginFormProps = {
 
 export function LoginForm({ submitAction }: LoginFormProps) {
 
-    const { setAuth } = useContext(AuthContext);
-
-    const { formData, errors, handleChange } = useForm({
+    const { handleSubmit } = useAuth()
+    const { formData, errors, validate, handleChange } = useForm({
         defaultData: { username: '', password: '' },
         rules: {
             username: { required: true },
@@ -20,15 +19,12 @@ export function LoginForm({ submitAction }: LoginFormProps) {
         }
     })
 
-    async function handleSubmit() {
-        console.log(formData)
-    }
-
     return (
-        <>
+        <View style={styles.form}>
             <TextInput
                 label="Usuario"
                 value={formData.username}
+                style={styles.input}
                 onChangeText={(value) => handleChange('username', value.toLowerCase())}
             />
             <TextInput
@@ -36,11 +32,30 @@ export function LoginForm({ submitAction }: LoginFormProps) {
                 secureTextEntry
                 right={<TextInput.Icon icon="eye" />}
                 value={formData.password}
+                style={styles.input}
                 onChangeText={(value) => handleChange('password', value.toLowerCase())}
             />
-            <Button mode="contained" onPress={handleSubmit}>
+            <Button
+                mode="contained"
+                onPress={() => handleSubmit({ formData, submitAction })}
+                style={styles.submitBtn}
+            >
                 Iniciar Sesión
             </Button>
-        </>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    form: {
+        gap: 10
+    },
+    input: {
+        padding: 5,
+        borderRadius: 5
+    },
+    submitBtn: {
+        marginTop: 20,
+        padding: 10
+    }
+})
