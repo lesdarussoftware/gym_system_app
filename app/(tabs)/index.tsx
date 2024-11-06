@@ -5,16 +5,8 @@ import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedView>
-        <ThemedText type="title">Mis datos</ThemedText>
-      </ThemedView>
+    <ThemedView>
+      <ThemedText type="title">Mis datos</ThemedText>
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 32
-  }
-});

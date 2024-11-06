@@ -1,10 +1,9 @@
 import { createContext, useState, ReactNode } from "react";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, TextInput } from "react-native-paper";
 import * as SecureStore from 'expo-secure-store';
 
 import { ModalComponent } from "@/components/ModalComponent";
-import { LoginForm } from "@/components/LoginForm";
 
 interface AuthData {
     access_token: string;
@@ -57,7 +56,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     <Text variant="displayLarge">
                         Tu sesión expiró. Por favor ingresa de nuevo tu usuario y contraseña
                     </Text>
-                    <LoginForm />
+                    <>
+                        <TextInput label="Usuario" />
+                        <TextInput
+                            label="Contraseña"
+                            secureTextEntry
+                            right={<TextInput.Icon icon="eye" />}
+                        />
+                    </>
                 </View>
             </ModalComponent>
             {children}

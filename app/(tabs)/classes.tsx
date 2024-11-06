@@ -1,18 +1,14 @@
-import { StyleSheet } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function ClassesScreen() {
     return (
         <>
-            <ThemedView style={styles.titleContainer}>
+            <ThemedView>
                 <ThemedText type="title">Clases</ThemedText>
             </ThemedView>
             <ThemedText>This app includes example code to help you get started.</ThemedText>
-            <Collapsible title="File-based routing">
+            {/* <Collapsible title="File-based routing">
                 <ThemedText>
                     This app has two screens:{' '}
                     <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
@@ -25,20 +21,7 @@ export default function ClassesScreen() {
                 <ExternalLink href="https://docs.expo.dev/router/introduction">
                     <ThemedText type="link">Learn more</ThemedText>
                 </ExternalLink>
-            </Collapsible>
+            </Collapsible> */}
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    headerImage: {
-        color: '#808080',
-        bottom: -90,
-        left: -35,
-        position: 'absolute',
-    },
-    titleContainer: {
-        flexDirection: 'row',
-        gap: 8,
-    },
-});

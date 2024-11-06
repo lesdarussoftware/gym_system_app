@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { TextInput } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 
 import { AuthContext } from "@/providers/AuthProvider";
+import { useForm } from "@/hooks/useForm";
 
 type LoginFormProps = {
     submitAction?: () => void;
@@ -9,21 +10,37 @@ type LoginFormProps = {
 
 export function LoginForm({ submitAction }: LoginFormProps) {
 
-    const { setAuth, openModal, setOpenModal } = useContext(AuthContext);
+    const { setAuth } = useContext(AuthContext);
 
-    async function handleSubmit(e: { preventDefault: () => void; }) {
-        e.preventDefault();
+    const { formData, errors, handleChange } = useForm({
+        defaultData: { username: '', password: '' },
+        rules: {
+            username: { required: true },
+            password: { required: true, minLength: 8, maxLength: 55 }
+        }
+    })
 
+    async function handleSubmit() {
+        console.log(formData)
     }
 
     return (
         <>
-            <TextInput label="Usuario" />
+            <TextInput
+                label="Usuario"
+                value={formData.username}
+                onChangeText={(value) => handleChange('username', value.toLowerCase())}
+            />
             <TextInput
                 label="Contraseña"
                 secureTextEntry
                 right={<TextInput.Icon icon="eye" />}
+                value={formData.password}
+                onChangeText={(value) => handleChange('password', value.toLowerCase())}
             />
+            <Button mode="contained" onPress={handleSubmit}>
+                Iniciar Sesión
+            </Button>
         </>
     );
 }
