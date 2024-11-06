@@ -1,9 +1,10 @@
 import { createContext, useState, ReactNode } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
+import * as SecureStore from 'expo-secure-store';
 
 import { ModalComponent } from "@/components/ModalComponent";
-import { LoginForm } from "@/components/common/LoginForm";
+import { LoginForm } from "@/components/LoginForm";
 
 interface AuthData {
     access_token: string;
@@ -43,8 +44,8 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
 
     const [auth, setAuth] = useState<AuthData | null>(
-        localStorage.getItem("auth_lesdagym")
-            ? JSON.parse(localStorage.getItem("auth_lesdagym")!)
+        SecureStore.getItem("auth_lesdagym")
+            ? JSON.parse(SecureStore.getItem("auth_lesdagym")!)
             : null
     );
     const [openModal, setOpenModal] = useState<boolean>(false);
