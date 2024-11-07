@@ -12,7 +12,7 @@ export default function IndexScreen() {
     const { formData, errors, validate, handleChange } = useForm({
         defaultData: { username: '', password: '' },
         rules: {
-            username: { required: true },
+            username: { required: true, maxLength: 55 },
             password: { required: true, minLength: 8, maxLength: 55 }
         }
     })

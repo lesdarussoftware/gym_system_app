@@ -25,6 +25,8 @@ export function useAuth() {
             if (status === STATUS_CODES.OK) {
                 SecureStore.setItem('auth_lesdagym', JSON.stringify(data));
                 router.push('/(tabs)')
+            } else {
+                console.log(data)
             }
         }
     }
