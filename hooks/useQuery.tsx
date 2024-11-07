@@ -58,15 +58,14 @@ export function useQuery() {
             if (refreshStatus === STATUS_CODES.UNAUTHORIZED &&
                 (refreshData.message === STATUS_MESSAGES.INVALID_TOKEN ||
                     refreshData.message === STATUS_MESSAGES.TOKEN_REVOKED)) {
+                setAuth(null)
+                await SecureStore.deleteItemAsync('auth_lesdagym');
                 setOpenModal(true);
-                console.log({ status: refreshStatus, data: refreshData });
                 return { status: refreshStatus, data: refreshData };
             } else {
-                console.log({ refreshStatus, refreshData })
                 return { status: refreshStatus, data: refreshData };
             }
         } else {
-            console.log({ status, data })
             return { status, data };
         }
     }

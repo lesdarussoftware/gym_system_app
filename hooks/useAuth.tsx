@@ -1,18 +1,32 @@
-import { useContext } from "react";
+import { useRouter } from "expo-router";
+import * as SecureStore from 'expo-secure-store';
 
-import { AuthContext } from "@/providers/AuthProvider";
 import { useQuery } from "./useQuery";
+
+import { STATUS_CODES } from "@/constants/statusCodes";
+import { LOGIN_URL } from "@/constants/urls";
 
 export function useAuth() {
 
-    const { setAuth } = useContext(AuthContext);
-    const { handleQuery } = useQuery()
+    const router = useRouter();
 
-    async function handleSubmit({ formData, submitAction }: {
+    const { handleQuery } = useQuery();
+
+    async function handleSubmit({ formData, validate }: {
         formData: { username: string; password: string; };
-        submitAction?: () => void;
+        validate: () => boolean;
     }) {
-        console.log(formData)
+        if (validate()) {
+            const { status, data } = await handleQuery({
+                url: LOGIN_URL,
+                method: "POST",
+                body: JSON.stringify(formData)
+            });
+            if (status === STATUS_CODES.OK) {
+                SecureStore.setItem('auth_lesdagym', JSON.stringify(data));
+                router.push('/(tabs)')
+            }
+        }
     }
 
     return {

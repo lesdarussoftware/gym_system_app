@@ -4,7 +4,6 @@ import { Text } from "react-native-paper";
 import * as SecureStore from 'expo-secure-store';
 
 import { ModalComponent } from "@/components/ModalComponent";
-import { LoginForm } from "@/components/LoginForm";
 
 interface AuthData {
     access_token: string;
@@ -55,9 +54,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
             <ModalComponent visible={openModal} onDismiss={() => setOpenModal(false)}>
                 <View>
                     <Text variant="displayLarge">
-                        Tu sesión expiró. Por favor ingresa de nuevo tu usuario y contraseña
+                        Tu sesión expiró. Por favor ingresa de nuevo tu usuario y contraseña.
                     </Text>
-                    <LoginForm />
                 </View>
             </ModalComponent>
             {children}

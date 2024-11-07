@@ -1,24 +1,14 @@
 import { StyleSheet, View } from "react-native";
-import { TextInput, Button } from "react-native-paper";
-
-import { useForm } from "@/hooks/useForm";
-import { useAuth } from "@/hooks/useAuth";
+import { TextInput, Button, Text } from "react-native-paper";
 
 type LoginFormProps = {
-    submitAction?: () => void;
+    onSubmit: () => void;
+    formData: { username: string; password: string; };
+    errors: { username?: { type: string }; password?: { type: string } };
+    handleChange: (name: string, value: string) => void
 }
 
-export function LoginForm({ submitAction }: LoginFormProps) {
-
-    const { handleSubmit } = useAuth()
-    const { formData, errors, validate, handleChange } = useForm({
-        defaultData: { username: '', password: '' },
-        rules: {
-            username: { required: true },
-            password: { required: true, minLength: 8, maxLength: 55 }
-        }
-    })
-
+export function LoginForm({ onSubmit, formData, errors, handleChange }: LoginFormProps) {
     return (
         <View style={styles.form}>
             <TextInput
@@ -27,6 +17,16 @@ export function LoginForm({ submitAction }: LoginFormProps) {
                 style={styles.input}
                 onChangeText={(value) => handleChange('username', value.toLowerCase())}
             />
+            {errors.username?.type === 'required' &&
+                <Text variant="bodySmall" style={styles.caption}>
+                    * El nombre de usuario es requerido.
+                </Text>
+            }
+            {errors.username?.type === 'maxLength' &&
+                <Text variant="bodySmall" style={styles.caption}>
+                    * El nombre de usuario es demasiado largo.
+                </Text>
+            }
             <TextInput
                 label="Contraseña"
                 secureTextEntry
@@ -35,10 +35,25 @@ export function LoginForm({ submitAction }: LoginFormProps) {
                 style={styles.input}
                 onChangeText={(value) => handleChange('password', value.toLowerCase())}
             />
+            {errors.password?.type === 'required' &&
+                <Text variant="bodySmall" style={styles.caption}>
+                    * La contraseña es requerida.
+                </Text>
+            }
+            {errors.password?.type === 'minLength' &&
+                <Text variant="bodySmall" style={styles.caption}>
+                    * La contraseña es demasiado corta.
+                </Text>
+            }
+            {errors.password?.type === 'maxLength' &&
+                <Text variant="bodySmall" style={styles.caption}>
+                    * La contraseña es demasiado larga.
+                </Text>
+            }
             <Button
                 mode="contained"
-                onPress={() => handleSubmit({ formData, submitAction })}
                 style={styles.submitBtn}
+                onPress={onSubmit}
             >
                 Iniciar Sesión
             </Button>
@@ -49,6 +64,9 @@ export function LoginForm({ submitAction }: LoginFormProps) {
 const styles = StyleSheet.create({
     form: {
         gap: 10
+    },
+    caption: {
+        color: '#F00'
     },
     input: {
         padding: 5,
