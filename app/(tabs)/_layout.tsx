@@ -30,15 +30,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="notifications"
-        options={{
-          title: 'Notificaciones',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'notifications' : 'notifications-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="payments"
         options={{
           title: 'Pagos',

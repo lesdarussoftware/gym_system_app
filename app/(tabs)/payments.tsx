@@ -7,7 +7,7 @@ export default function PaymentsScreen() {
             <ThemedView>
                 <ThemedText type="title">Pagos</ThemedText>
             </ThemedView>
-            <ThemedText>This app includes example code to help you get started.</ThemedText>
+            <ThemedText>Historial de pagos y estado actual de membresías.</ThemedText>
         </>
     );
 }

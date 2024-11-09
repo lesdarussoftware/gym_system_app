@@ -7,7 +7,7 @@ export default function HomeScreen() {
       <ThemedView>
         <ThemedText type="title">Inicio</ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+      <ThemedText>Aquí van las notificaciones y novedades</ThemedText>
     </>
   )
 }
