@@ -1,13 +1,16 @@
+import { View } from 'react-native';
+
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+
+import { styles } from '@/constants/styles';
 
 export default function PaymentsScreen() {
     return (
-        <>
-            <ThemedView>
-                <ThemedText type="title">Pagos</ThemedText>
-            </ThemedView>
-            <ThemedText>Historial de pagos y estado actual de membresías.</ThemedText>
-        </>
+        <View style={styles.mainContainer}>
+            <View style={styles.screenContainer}>
+                <ThemedText type="title" darkColor='#000'>Pagos</ThemedText>
+                <ThemedText darkColor='#000'>Historial de pagos y estado actual de membresías.</ThemedText>
+            </View>
+        </View>
     );
 }

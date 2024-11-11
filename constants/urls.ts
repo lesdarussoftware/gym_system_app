@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.0.104:9000/api';
+const BASE_URL = 'http://192.168.0.132:9000/api';
 export const LOGIN_URL = BASE_URL + '/auth/login';
 export const REFRESH_URL = BASE_URL + '/auth/refresh';
 export const LOGOUT_URL = BASE_URL + '/auth/logout';
