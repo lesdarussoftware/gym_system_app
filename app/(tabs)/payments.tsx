@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useEffect, useMemo, useState, useCallback } from 'react';
+import { StyleSheet, View, ScrollView, RefreshControl } from 'react-native';
 import { format } from 'date-fns';
 
 import { useMemberships } from '@/hooks/useMemeberchips';
@@ -14,6 +14,13 @@ import { getExpirationDate } from '@/constants/helpers';
 export default function PaymentsScreen() {
 
     const { memberships, getMemberships } = useMemberships();
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await getMemberships();
+        setRefreshing(false);
+    }, [getMemberships]);
 
     useEffect(() => {
         getMemberships();
@@ -53,14 +60,19 @@ export default function PaymentsScreen() {
     ], []);
 
     return (
-        <View style={styles.mainContainer}>
-            <View style={styles.screenContainer}>
-                <ThemedText type="title" darkColor='#000'>Pagos</ThemedText>
-                <View style={localStyles.tableContainer}>
-                    <DataTableComponent headCells={headCells} rows={memberships} />
+        <ScrollView
+            style={styles.scrollContainer}
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        >
+            <View style={styles.mainContainer}>
+                <View style={styles.screenContainer}>
+                    <ThemedText type="title" darkColor='#000'>Pagos</ThemedText>
+                    <View style={localStyles.tableContainer}>
+                        <DataTableComponent headCells={headCells} rows={memberships} />
+                    </View>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 

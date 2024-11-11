@@ -2,6 +2,7 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
+
 import { MAIN_COLOR } from '@/constants/Colors';
 
 export default function TabLayout() {

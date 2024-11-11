@@ -32,7 +32,7 @@ export default function RootLayout() {
   };
 
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider>
       <AuthProvider>
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />

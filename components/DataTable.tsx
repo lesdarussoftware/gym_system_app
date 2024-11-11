@@ -6,7 +6,7 @@ import { MAIN_COLOR } from '@/constants/Colors';
 
 export function DataTableComponent({ headCells, rows }: { headCells: any, rows: any[] }) {
     const [page, setPage] = useState<number>(0);
-    const [numberOfItemsPerPageList] = useState([2, 3, 4]);
+    const [numberOfItemsPerPageList] = useState([10, 25, 50]);
     const [itemsPerPage, onItemsPerPageChange] = useState(numberOfItemsPerPageList[0]);
 
     const from = page * itemsPerPage;

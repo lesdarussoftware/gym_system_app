@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+    scrollContainer: {
+        backgroundColor: '#FFF'
+    },
     mainContainer: {
         height: '100%',
         backgroundColor: '#000',
