@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { format } from 'date-fns';
 
 import { useMemberships } from '@/hooks/useMemeberchips';
@@ -22,8 +22,8 @@ export default function PaymentsScreen() {
     const headCells = useMemo(() => [
         {
             id: 'id',
-            numeric: true,
-            label: 'N° registro',
+            numeric: false,
+            label: '#',
             accessor: 'id'
         },
         {
@@ -35,21 +35,19 @@ export default function PaymentsScreen() {
         {
             id: 'start',
             numeric: false,
-            label: 'Fecha inicio',
+            label: 'Inicio',
             accessor: (row: { start: any; }) => format(new Date(row.start), 'dd-MM-yy')
         },
         {
             id: 'duration',
             numeric: false,
-            disablePadding: true,
-            label: 'Fecha vencimiento',
-            accessor: (row: Membership) => format(getExpirationDate(row), 'dd-MM-yyyy')
+            label: 'Venc.',
+            accessor: (row: Membership) => format(getExpirationDate(row), 'dd-MM-yy')
         },
         {
             id: 'limit',
             numeric: false,
-            disablePadding: true,
-            label: 'Límite de ingresos',
+            label: 'Límite',
             accessor: 'limit'
         }
     ], []);
@@ -58,8 +56,16 @@ export default function PaymentsScreen() {
         <View style={styles.mainContainer}>
             <View style={styles.screenContainer}>
                 <ThemedText type="title" darkColor='#000'>Pagos</ThemedText>
-                <DataTableComponent headCells={headCells} rows={memberships} />
+                <View style={localStyles.tableContainer}>
+                    <DataTableComponent headCells={headCells} rows={memberships} />
+                </View>
             </View>
         </View>
     );
 }
+
+const localStyles = StyleSheet.create({
+    tableContainer: {
+        marginTop: 10
+    }
+});

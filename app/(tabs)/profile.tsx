@@ -1,12 +1,11 @@
 import { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Avatar, Card, Button } from 'react-native-paper';
-import * as SecureStorage from 'expo-secure-store'
 
 import { AuthContext } from '@/providers/AuthProvider';
+import { useAuth } from '@/hooks/useAuth';
 
 import { styles } from '@/constants/styles';
-import { useAuth } from '@/hooks/useAuth';
 
 const LeftContent = (props: any) => <Avatar.Icon {...props} icon="account" />
 

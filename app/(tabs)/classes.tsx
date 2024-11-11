@@ -24,7 +24,7 @@ export default function ClassesScreen() {
                 <View style={localStyles.collapsible}>
                     {classes.map((c: ClassType) => {
                         return (
-                            <Collapsible title={c.name}>
+                            <Collapsible key={c.id} title={c.name}>
                                 <ThemedText key={c.id}>
                                     <ThemedText type="defaultSemiBold" darkColor='#000'>{c.name}</ThemedText>
                                 </ThemedText>
