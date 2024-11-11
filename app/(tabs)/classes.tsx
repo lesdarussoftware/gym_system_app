@@ -7,6 +7,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { Collapsible } from '@/components/Collapsible';
 
 import { styles } from '@/constants/styles';
+import { ClassType } from '@/constants/types';
 
 export default function ClassesScreen() {
 
@@ -21,15 +22,15 @@ export default function ClassesScreen() {
             <View style={styles.screenContainer}>
                 <ThemedText type="title" darkColor='#000'>Clases</ThemedText>
                 <View style={localStyles.collapsible}>
-                    <Collapsible title="Horarios">
-                        {classes.map(c => {
-                            return (
+                    {classes.map((c: ClassType) => {
+                        return (
+                            <Collapsible title={c.name}>
                                 <ThemedText key={c.id}>
-                                    <ThemedText type="defaultSemiBold">{c.name}</ThemedText>
+                                    <ThemedText type="defaultSemiBold" darkColor='#000'>{c.name}</ThemedText>
                                 </ThemedText>
-                            );
-                        })}
-                    </Collapsible>
+                            </Collapsible>
+                        );
+                    })}
                 </View>
             </View>
         </View>
