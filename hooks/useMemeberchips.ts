@@ -15,7 +15,6 @@ export function useMemberships() {
     async function getMemberships() {
         const { status, data } = await handleQuery({ url: `${MEMBERSHIP_URL}/${auth?.me.gym.hash}` })
         if (status === STATUS_CODES.OK) {
-            console.log(data)
             setMemberships(data);
         }
     }

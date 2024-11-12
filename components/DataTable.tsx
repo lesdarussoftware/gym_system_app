@@ -27,7 +27,7 @@ export function DataTableComponent({ headCells, rows }: { headCells: any, rows: 
             </DataTable.Header>
             {rows.slice(from, to).map((row: any, index: number) => {
                 return (
-                    <DataTable.Row key={row.key}>
+                    <DataTable.Row key={index}>
                         {headCells.map((hc: any, idx: number) => (
                             <DataTable.Cell key={idx} numeric={hc.numeric}>
                                 {typeof hc.accessor === 'function' ? hc.accessor(row, index) : row[hc.accessor]}

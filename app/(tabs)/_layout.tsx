@@ -31,9 +31,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="payments"
+        name="memberships"
         options={{
-          title: 'Pagos',
+          title: 'Membresías',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'card' : 'card-outline'} color={color} />
           ),

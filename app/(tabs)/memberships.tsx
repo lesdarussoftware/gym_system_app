@@ -9,9 +9,10 @@ import { DataTableComponent } from '@/components/DataTable';
 
 import { styles } from '@/constants/styles';
 import { Membership } from '@/constants/types';
-import { getExpirationDate } from '@/constants/helpers';
+import { getExpirationDate, membershipIsActive } from '@/helpers/utils';
+import { Button } from 'react-native-paper';
 
-export default function PaymentsScreen() {
+export default function MembershipsScreen() {
 
     const { memberships, getMemberships } = useMemberships();
     const [refreshing, setRefreshing] = useState(false);
@@ -43,19 +44,25 @@ export default function PaymentsScreen() {
             id: 'start',
             numeric: false,
             label: 'Inicio',
-            accessor: (row: { start: any; }) => format(new Date(row.start), 'dd-MM-yy')
+            accessor: (row: { start: any; }) => format(new Date(row.start), 'dd/MM')
         },
         {
             id: 'duration',
             numeric: false,
             label: 'Venc.',
-            accessor: (row: Membership) => format(getExpirationDate(row), 'dd-MM-yy')
+            accessor: (row: Membership) => format(getExpirationDate(row), 'dd/MM')
         },
         {
             id: 'limit',
             numeric: false,
             label: 'Límite',
             accessor: 'limit'
+        },
+        {
+            id: 'classes',
+            numeric: false,
+            label: 'Clases',
+            accessor: (row: Membership) => <Button compact mode="outlined">Ver</Button>
         }
     ], []);
 
@@ -66,9 +73,23 @@ export default function PaymentsScreen() {
         >
             <View style={styles.mainContainer}>
                 <View style={styles.screenContainer}>
-                    <ThemedText type="title" darkColor='#000'>Pagos</ThemedText>
+                    <ThemedText type="title" darkColor='#000'>
+                        Activas
+                    </ThemedText>
                     <View style={localStyles.tableContainer}>
-                        <DataTableComponent headCells={headCells} rows={memberships} />
+                        <DataTableComponent
+                            headCells={headCells}
+                            rows={memberships.filter((row: Membership) => membershipIsActive(row))}
+                        />
+                    </View>
+                    <ThemedText type="title" darkColor='#000' style={{ marginTop: 20 }}>
+                        Vencidas
+                    </ThemedText>
+                    <View style={localStyles.tableContainer}>
+                        <DataTableComponent
+                            headCells={headCells}
+                            rows={memberships.filter((row: Membership) => !membershipIsActive(row))}
+                        />
                     </View>
                 </View>
             </View>
@@ -78,6 +99,6 @@ export default function PaymentsScreen() {
 
 const localStyles = StyleSheet.create({
     tableContainer: {
-        marginTop: 10
+        marginTop: 5
     }
 });
