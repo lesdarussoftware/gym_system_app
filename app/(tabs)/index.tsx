@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import { StyleSheet, View, ScrollView, RefreshControl } from 'react-native';
 import { format } from 'date-fns';
+import { Button } from 'react-native-paper';
 
 import { useMemberships } from '@/hooks/useMemeberchips';
 
@@ -10,7 +11,6 @@ import { DataTableComponent } from '@/components/DataTable';
 import { styles } from '@/constants/styles';
 import { Membership } from '@/constants/types';
 import { getExpirationDate, membershipIsActive } from '@/helpers/utils';
-import { Button } from 'react-native-paper';
 
 export default function IndexScreen() {
 
