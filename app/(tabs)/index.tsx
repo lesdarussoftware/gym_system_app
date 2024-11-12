@@ -74,7 +74,7 @@ export default function IndexScreen() {
             <View style={styles.mainContainer}>
                 <View style={styles.screenContainer}>
                     <ThemedText type="title" darkColor='#000'>
-                        Activas
+                        Membresías activas
                     </ThemedText>
                     <View style={localStyles.tableContainer}>
                         <DataTableComponent
@@ -83,7 +83,7 @@ export default function IndexScreen() {
                         />
                     </View>
                     <ThemedText type="title" darkColor='#000' style={{ marginTop: 20 }}>
-                        Vencidas
+                        Membresías vencidas
                     </ThemedText>
                     <View style={localStyles.tableContainer}>
                         <DataTableComponent

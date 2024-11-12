@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { View, ScrollView, RefreshControl } from 'react-native';
+import { View, ScrollView, RefreshControl, StyleSheet } from 'react-native';
 
 import { useNotifications } from '@/hooks/useNotifications';
 
@@ -7,6 +7,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 import { styles } from '@/constants/styles';
+import { MAIN_COLOR } from '@/constants/Colors';
 
 export default function NotificationsScreen() {
 
@@ -27,10 +28,23 @@ export default function NotificationsScreen() {
     >
       <View style={styles.mainContainer}>
         <View style={styles.screenContainer}>
-          <ThemedText type="title" darkColor='#000'>Notificaciones</ThemedText>
+          <ThemedText type="title" darkColor='#000' style={{ marginBottom: 15 }}>
+            Avisos
+          </ThemedText>
           {notifications.map(n => (
-            <ThemedView key={n.id}>
-              <ThemedText>{n.message}</ThemedText>
+            <ThemedView
+              key={n.id}
+              darkColor='#000'
+              style={{
+                padding: 10,
+                borderRadius: 5,
+                backgroundColor: '#FFF',
+                borderColor: MAIN_COLOR,
+                borderWidth: 1,
+                marginBottom: 10
+              }}
+            >
+              <ThemedText style={{ color: '#000' }}>{n.message}</ThemedText>
             </ThemedView>
           ))}
         </View>

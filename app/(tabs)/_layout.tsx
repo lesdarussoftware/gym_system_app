@@ -24,7 +24,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="notifications"
         options={{
-          title: 'Notificaciones',
+          title: 'Avisos',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'notifications' : 'notifications-outline'} color={color} />
           ),

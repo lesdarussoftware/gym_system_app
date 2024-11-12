@@ -31,7 +31,7 @@ export function useNotifications() {
 
     const handleRead = async (id: number) => {
         const { status, data } = await handleQuery({
-            url: NOTIFICATION_URL + `/${auth?.me.gym.hash}/${id}`,
+            url: `${NOTIFICATION_URL}/${auth?.me.gym.hash}/${id}`,
             method: 'PUT'
         });
         if (status === STATUS_CODES.OK) {
