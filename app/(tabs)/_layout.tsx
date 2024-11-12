@@ -15,27 +15,27 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Inicio',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="classes"
-        options={{
           title: 'Clases',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'calendar' : 'calendar-outline'} color={color} />
+            <TabBarIcon name={focused ? 'medal' : 'medal-outline'} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="memberships"
+        name="notifications"
         options={{
-          title: 'Membresías',
+          title: 'Notificaciones',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'card' : 'card-outline'} color={color} />
+            <TabBarIcon name={focused ? 'notifications' : 'notifications-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="schedules"
+        options={{
+          title: 'Horarios',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'calendar' : 'calendar-outline'} color={color} />
           ),
         }}
       />

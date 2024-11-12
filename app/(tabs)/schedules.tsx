@@ -9,7 +9,7 @@ import { Collapsible } from '@/components/Collapsible';
 import { styles } from '@/constants/styles';
 import { ClassType } from '@/constants/types';
 
-export default function ClassesScreen() {
+export default function SchedulesScreen() {
 
     const { getClasses, classes } = useClasses();
 
@@ -20,7 +20,7 @@ export default function ClassesScreen() {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.screenContainer}>
-                <ThemedText type="title" darkColor='#000'>Clases</ThemedText>
+                <ThemedText type="title" darkColor='#000'>Horarios</ThemedText>
                 <View style={localStyles.collapsible}>
                     {classes.map((c: ClassType) => {
                         return (
