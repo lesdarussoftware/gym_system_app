@@ -1,6 +1,13 @@
 export type ClassType = {
     id: number;
     name: string;
+    schedules: Schedule[];
+}
+
+export type Schedule = {
+    id: number;
+    day: string;
+    hour: number;
 }
 
 export type Membership = {

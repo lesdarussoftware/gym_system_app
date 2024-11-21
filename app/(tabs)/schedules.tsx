@@ -7,7 +7,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { Collapsible } from '@/components/Collapsible';
 
 import { styles } from '@/constants/styles';
-import { ClassType } from '@/constants/types';
+import { ClassType, Schedule } from '@/constants/types';
 
 export default function SchedulesScreen() {
 
@@ -26,7 +26,11 @@ export default function SchedulesScreen() {
                         return (
                             <Collapsible key={c.id} title={c.name}>
                                 <ThemedText key={c.id}>
-                                    <ThemedText type="defaultSemiBold" darkColor='#000'>{c.name}</ThemedText>
+                                    {c.schedules.map((sc: Schedule) => (
+                                        <ThemedText type="defaultSemiBold" darkColor='#000' key={sc.id}>
+                                            {`${sc.day} ${sc.hour}h`}
+                                        </ThemedText>
+                                    ))}
                                 </ThemedText>
                             </Collapsible>
                         );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 
@@ -9,6 +10,9 @@ type LoginFormProps = {
 }
 
 export function LoginForm({ onSubmit, formData, errors, handleChange }: LoginFormProps) {
+
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+
     return (
         <View style={styles.form}>
             <TextInput
@@ -29,8 +33,8 @@ export function LoginForm({ onSubmit, formData, errors, handleChange }: LoginFor
             }
             <TextInput
                 label="Contraseña"
-                secureTextEntry
-                right={<TextInput.Icon icon="eye" />}
+                secureTextEntry={!showPassword}
+                right={<TextInput.Icon icon="eye" onPress={() => setShowPassword(!showPassword)} />}
                 value={formData.password}
                 style={styles.input}
                 onChangeText={(value) => handleChange('password', value.toLowerCase())}

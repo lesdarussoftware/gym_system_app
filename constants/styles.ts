@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     mainContainer: {
         height: '100%',
         backgroundColor: '#000',
-        paddingTop: 35
+        paddingTop: 5
     },
     screenContainer: {
         backgroundColor: '#FFF',
