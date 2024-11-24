@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Avatar, Card, Button } from 'react-native-paper';
 
 import { AuthContext } from '@/providers/AuthProvider';
@@ -8,7 +8,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { styles } from '@/constants/styles';
 import { MAIN_COLOR } from '@/constants/Colors';
 
-const LeftContent = (props: any) => <Avatar.Icon {...props} icon="account" />
+const LeftContent = (props: any) => <Avatar.Icon style={localStyles.icon} {...props} icon="account" />
 
 export default function ProfileScreen() {
 
@@ -27,7 +27,7 @@ export default function ProfileScreen() {
           />
         </Card>
         <Button mode="contained" style={localStyles.logoutBtn} onPress={handleLogout}>
-          Salir
+          <Text style={localStyles.logoutBtnText}>Salir</Text>
         </Button>
       </View>
     </View>
@@ -38,11 +38,16 @@ const localStyles = StyleSheet.create({
   card: {
     backgroundColor: MAIN_COLOR
   },
+  icon: {
+    backgroundColor: '#FFF'
+  },
   logoutBtn: {
     margin: 'auto',
     marginTop: 20,
     width: '70%',
-    color: '#FFF',
     backgroundColor: MAIN_COLOR
+  },
+  logoutBtnText: {
+    color: '#FFF',
   }
 })
